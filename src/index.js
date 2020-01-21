@@ -10,6 +10,17 @@ mongoose.connect('mongodb+srv://elkabonga:zasx1452@cluster0-hdtfh.mongodb.net/we
 
 const app = express()
 const server = http.Server(app)
+const port = normalizePort(process.env.PORT || "21254");
+function normalizePort(val) {
+    const port = parseInt(val, 10);
+    if (isNaN(port)) {
+        return val;
+    }
+    if (port >= 0) {
+        return port
+    }
+    return false;
+}
 
 const routes = require('./routes.js')
 const { setupWebsocket } = require('./websocket.js')
@@ -20,4 +31,4 @@ app.use(cors())
 app.use(express.json())
 app.use(routes)
 
-server.listen(3333)
+server.listen(port)
